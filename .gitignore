@@ -24,3 +24,16 @@ _.ntvs_
 _.njsproj
 _.sln
 \*.sw?
+
+
+# Environment files
+.env
+.npmrc
+
+# Build artifacts
+dist/
+public/
+
+# Logs and system files
+*.log
+.DS_Store
