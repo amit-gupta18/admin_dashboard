@@ -33,6 +33,7 @@ _.sln
 # Build artifacts
 dist/
 public/
+gitignore
 
 # Logs and system files
 *.log

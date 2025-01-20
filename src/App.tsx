@@ -5,16 +5,15 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import dataProvider, {
-  GraphQLClient,
-  liveProvider,
-} from "@refinedev/nestjs-query";
+import {dataProvider , liveProvider} from './providers/data';
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
 import { App as AntdApp } from "antd";
 import { BrowserRouter, Route, Routes } from "react-router";
+import { authProvider } from "./providers";
+import { Home , Login , Register , ForgotPassword} from './pages'
 
 
 function App() {
@@ -25,11 +24,12 @@ function App() {
           <AntdApp>
             <DevtoolsProvider>
               <Refine
-                // dataProvider={dataProvider(gqlClient)}
-                // liveProvider={liveProvider(wsClient)}
+                dataProvider={dataProvider}
+                liveProvider={liveProvider}
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
-                // authProvider={}
+                // using the auth provider for this app 
+                authProvider={authProvider}
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
@@ -40,6 +40,11 @@ function App() {
               >
                 <Routes>
                   <Route index element={<WelcomePage />} />
+                  <Route index element={<Home />}/>
+                  <Route path="/register" element={<Register/>}/>
+                  <Route path="/login" element={<Login/>}/>
+                  <Route path="/forgot-password" element={<ForgotPassword />}/>
+
                 </Routes>
                 <RefineKbar />
                 <UnsavedChangesNotifier />
