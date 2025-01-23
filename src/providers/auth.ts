@@ -6,7 +6,8 @@ import { API_URL, dataProvider } from "./data";
 
 /**
  * For demo purposes and to make it easier to test the app, you can use the following credentials:
- */
+*/
+
 export const authCredentials = {
   email: "michael.scott@dundermifflin.com",
   password: "demodemo",
@@ -60,12 +61,11 @@ export const authProvider: AuthProvider = {
     };
   },
   onError: async (error) => {
-    if (error.statusCode === "UNAUTHENTICATED") {
+    if (error.statusCode === "UNAUTHENTICATED"){
       return {
         logout: true,
       };
     }
-
     return { error };
   },
   check: async () => {
@@ -124,7 +124,6 @@ export const authProvider: AuthProvider = {
                 `,
         },
       });
-
       return data.me;
     } catch (error) {
       return undefined;
